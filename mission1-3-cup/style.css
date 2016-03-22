@@ -1,0 +1,98 @@
+/**
+ * 圣杯布局：左右两边固定，中间部分自适应，并且拥有块级元素特性。
+ * 注意：浏览器渲染自上而下，所以HTML中，middle元素放前面。
+ * 弊端：1.采用relative相对定位，若想使用absolute，这样的布局方式就残废了。。
+ *       2.若为middle定宽，设置padding值，容器会撑大，问题多。
+ * 解决：双飞翼布局是对圣杯布局的改良。
+ */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.myTeam {
+    background-color: #eee;
+    border: 1px solid #999;
+    padding-top: 20px;
+    padding-left: 240px;
+    padding-right: 160px;
+    overflow: hidden;
+}
+
+
+/**
+ * 1.由于中间元素采用浮动，左边可采用负边距。
+ * 2.相对定位（相对于自己）将中间元素显现出来。
+ */
+
+.myTeam .left {
+    background-color: #fff;
+    border: 1px solid #999;
+    width: 200px;
+    float: left;
+    margin-left: -100%;
+    position: relative;
+    left: -220px;
+}
+
+
+/**
+ *1. 右侧设置左浮动，按理说应紧挨左侧容器，由于左侧设置左边距跑了，
+ * 所以右侧顶头。
+ * 2. 相对定位，right相对于容器右上角顶点。
+ * 3.实现中、右两列等高。
+ */
+
+.myTeam .right {
+    background-color: #fff;
+    border: 1px solid #999;
+    width: 120px;
+    float: left;
+    margin-left: -124px;
+    position: relative;
+    right: -142px;
+    margin-bottom: -600px;
+    padding-bottom: 600px;
+}
+
+
+/**
+ * 1.中间元素浮动，使之与左右两边一行，并让它拥有块级元素特性
+ * 2.实现中、右两列等高。
+ */
+
+ .myTeam .middle {
+    background-color: #fff;
+    border: 1px solid #999;
+    float: left;
+    width: 100%;
+    margin-bottom: -600px;
+    padding-bottom: 600px;
+}
+
+img {
+    width: 80px;
+    height: 80px;
+    padding: 20px;
+}
+
+h5 {
+    position: relative;
+    left: 106px;
+    top: -103px;
+    font-family: "微软雅黑", "Georgia", "Serif";
+}
+
+article {
+    width: 600px;
+    margin: 30px auto;
+    font-size: 16px;
+    line-height: 2em;
+    font-family: "微软雅黑", "Georgia", "Serif";
+}
